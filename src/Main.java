@@ -1,25 +1,24 @@
+import helpers.Drawler;
+import helpers.SpacesAdder;
+
 public class Main
 {
     public static void main(String[] args)
     {
-        int x = 100, y = 20, length, spaces;
+        int x = 125, y = 20;
         String text = new String();
         String newText = new String();
 
         text = "Wouldn't it be nice to take a walk on some pure white sand,";
+        String text2 = "gaze at the horizon without living in fear?";
 
-        length = text.length();
+        newText = newText + SpacesAdder.getNewLine(text, x) + "\n";
+        newText = newText + SpacesAdder.getNewLine(text2, x);
 
-        spaces = (x - length)/2;
-
-        for(int i=0;i<spaces;i++)
-        {
-            newText = newText + " ";
-        }
-        newText = newText + text;
-
-        System.out.println(spaces);
         System.out.print(newText);
+
     }
 }
- 
+
+
+

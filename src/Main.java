@@ -14,7 +14,7 @@ public class Main
 
         URL url = Main.class.getResource("lycris.txt");
 
-        String fileText = Helper.readFromFile( url.getPath().toString() );
+        String fileText = Helper.readFromFile(url.getPath());
 
         String[] text = fileText.split("\n");
 
@@ -33,8 +33,7 @@ public class Main
         }
     }
 
-
-    public static boolean checkSize(String[] text, int width)
+    private static boolean checkSize(String[] text, int width)
     {
         int maxSize = 0;
         for (String t:text)
@@ -45,10 +44,7 @@ public class Main
             }
         }
 
-        if(maxSize > width)
-            return false;
-        else
-            return true;
+        return maxSize <= width;
     }
 }
 

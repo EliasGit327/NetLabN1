@@ -1,25 +1,56 @@
+import helpers.Helper;
+
+import java.io.File;
+import java.net.URL;
+
+import static com.sun.org.apache.xalan.internal.lib.ExsltStrings.split;
+
 public class Main
 {
     public static void main(String[] args)
     {
-        int x = 100, y = 20, length, spaces;
-        String text = new String();
-        String newText = new String();
+        int width = 175;
+        String newText = "";
 
-        text = "Wouldn't it be nice to take a walk on some pure white sand,";
+        URL url = Main.class.getResource("lycris.txt");
 
-        length = text.length();
+        String fileText = Helper.readFromFile( url.getPath().toString() );
 
-        spaces = (x - length)/2;
+        String[] text = fileText.split("\n");
 
-        for(int i=0;i<spaces;i++)
+
+        if( checkSize(text, width) )
         {
-            newText = newText + " ";
+            for (String t : text) {
+                newText = newText + Helper.getNewLine(t, width) + "\n";
+            }
+
+            System.out.print(newText);
         }
-        newText = newText + text;
+        else
+        {
+            System.out.print("Text has a line or more which is/are wider than your width\nChange width parameter or text");
+        }
+    }
 
-        System.out.println(spaces);
-        System.out.print(newText);
 
+    public static boolean checkSize(String[] text, int width)
+    {
+        int maxSize = 0;
+        for (String t:text)
+        {
+            if (maxSize < t.length())
+            {
+                maxSize = t.length();
+            }
+        }
+
+        if(maxSize > width)
+            return false;
+        else
+            return true;
     }
 }
+
+
+
